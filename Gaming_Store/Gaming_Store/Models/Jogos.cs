@@ -12,7 +12,7 @@ namespace Gaming_Store.Models
 
         public string Nome { get; set; }
 
-        public decimal preco { get; set; }
+        public decimal Preco { get; set; }
 
 
     }

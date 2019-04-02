@@ -15,7 +15,7 @@ namespace Gaming_Store.Models
 
         public string Email { get; set; }
 
-        public string email { get; set; }
+        public string Morada { get; set; }
 
 
     }

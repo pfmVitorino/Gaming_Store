@@ -10,8 +10,8 @@ namespace Gaming_Store.Models
 
         public int Id { get; set; }
 
-        public DateTime data { get; set; }
+        public DateTime Data { get; set; }
 
-        public decimal valor { get; set; }
+        public decimal Valor { get; set; }
     }
 }

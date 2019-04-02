@@ -8,8 +8,8 @@ namespace Gaming_Store.Models
     public class Plataforma
     {
 
-        public int id { get; set; }
+        public int Id { get; set; }
 
-        public string nome { get; set; }
+        public string Nome { get; set; }
     }
 }
