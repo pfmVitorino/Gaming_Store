@@ -17,15 +17,15 @@ namespace Gaming_Store.Models
         public DateTime Data { get; set; }
 
         [Required]
-        public decimal Valor { get; set; }
+        public string Preco { get; set; }
 
-        [ForeignKey("Cliente")]
-        public int ClienteFK { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        [ForeignKey("Clientes")]
+        public string ClienteFK { get; set; }
+        public virtual Cliente Clientes { get; set; }
 
 
         [ForeignKey("Jogo")]
-        public int JogoFK { get; set; }
+        public string JogoFK { get; set; }
         public virtual Jogos Jogo { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace Gaming_Store.Models
 
         // representar o 'construtor' desta classe
         // identificar onde se encontra a Base de Dados
-        public JogosDB() : base("Database1") { }
+        public JogosDB() : base("Gaming_Store.Models.JogosDB") { }
 
         // descrever todas as tabelas
         public DbSet<Cliente> Cliente { get; set; }

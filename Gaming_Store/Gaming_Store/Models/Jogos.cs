@@ -35,6 +35,6 @@ namespace Gaming_Store.Models
 
         // um Jogo pode ser várias vezes comprado
         public virtual ICollection<Compra> Compra { get; set; }
-
+        public string ClienteFK { get; internal set; }
     }
 }
