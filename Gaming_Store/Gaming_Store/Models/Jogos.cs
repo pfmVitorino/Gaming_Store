@@ -24,7 +24,6 @@ namespace Gaming_Store.Models
         public string Nome { get; set; }
 
         [Required]
-        [StringLength(30)]
         public decimal Preco { get; set; }
 
 
@@ -32,18 +31,9 @@ namespace Gaming_Store.Models
         [StringLength(30)]
         public string Plataforma { get; set; }
 
-        // ***************************
-        // criar a chave forasteira
-        // relacionar o objeto Jogo com um objeto Cliente
-        public Jogos Jogo { get; set; }
+       
 
-        // cria um atributo para funcionar como FK, na BD
-        // e relaciona-o com o atributo anterior
-        [ForeignKey("Jogos")]
-        public int JogosFK { get; set; }
-        // **************************
-
-        // um Jogo pode ser váias vezes comprado
+        // um Jogo pode ser várias vezes comprado
         public virtual ICollection<Compra> Compra { get; set; }
 
     }

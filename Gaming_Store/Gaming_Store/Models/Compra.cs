@@ -24,7 +24,7 @@ namespace Gaming_Store.Models
         public virtual Cliente Cliente { get; set; }
 
 
-        [ForeignKey("Jogos")]
+        [ForeignKey("Jogo")]
         public int JogoFK { get; set; }
         public virtual Jogos Jogo { get; set; }
     }
