@@ -16,10 +16,12 @@ namespace Gaming_Store.Models
         public JogosDB() : base("Gaming_Store.Models.JogosDB") { }
 
         // descrever todas as tabelas
-        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Clientes> Clientes { get; set; }
         public DbSet<Jogos> Jogos { get; set; }
-        public DbSet<Plataforma> Plataforma { get; set; }
-        public DbSet<Compra> Compra { get; set; }
+        public DbSet<Plataformas> Plataformas { get; set; }
+        public DbSet<Compras> Compras { get; set; }
+        public DbSet<Plataforma_Jogos> Plataforma_Jogos { get; set; }
+        public DbSet<Detalhes_Compra> Detalhes_Compra { get; set; }
 
     }
 }

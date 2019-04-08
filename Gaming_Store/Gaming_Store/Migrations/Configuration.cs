@@ -25,24 +25,24 @@ namespace Gaming_Store.Migrations
             // Configuration --- SEED
             //=============================================================
 
-            // ############################################################################################
-            // adiciona Clientes
-            var cliente = new System.Collections.Generic.List<Gaming_Store.Models.Cliente> {
-                new Cliente  {Id = 1,Nome = "Pedro Vitorino", NIF ="23343434", Email="pedro@hotmail.com", Morada="Rua Mota Lima" },
+//            // ############################################################################################
+//            // adiciona Clientes
+                  var cliente = new List<Clientes> {
+                  new Clientes  {Id = 1,Nome = "Pedro Vitorino", NIF ="23343434", Email="pedro@hotmail.com", Morada="Rua Mota Lima" ,CodPostal="2300-455 Tomar"},
 
          };
-            cliente.ForEach(dd => context.Cliente.AddOrUpdate(d => d.Nome, dd));
+           cliente.ForEach(dd => context.Clientes.AddOrUpdate(d => d.Nome, dd));
             context.SaveChanges();
 
-            // ############################################################################################
-            // adiciona Jogos
-            var jogos = new List<Gaming_Store.Models.Jogos> {
-              new Jogos  {Id=1, Nome = "Hitman2", Plataforma ="XBOX ONE", Preco= 55, ClienteFK=""},
-              new Jogos  {Id=2, Nome = "Red Dead Redemptiom 2", Plataforma ="PS4", Preco= 70, ClienteFK=""},
-              new Jogos  {Id=3, Nome = "Fifa 19", Plataforma ="PS4", Preco= 70, ClienteFK=""},
-              new Jogos  {Id=4, Nome = "Resident Evil 7", Plataforma ="PC", Preco= 70, ClienteFK=""},
-              new Jogos  {Id=5, Nome = "Call of Duty Black OPS4", Plataforma ="PS4", Preco= 70, ClienteFK=""},
-
+//            // ############################################################################################
+//            // adiciona Jogos
+           var jogos = new List<Jogos> {
+              new Jogos  {Id=1, Nome = "Hitman2", Plataforma ="XBOX ONE",Fotografia="", Preco= 55},
+              new Jogos  {Id=2, Nome = "Red Dead Redemptiom 2", Plataforma ="PS4",Fotografia="", Preco= 70},
+              new Jogos  {Id=3, Nome = "Fifa 19", Plataforma ="PS4",Fotografia="", Preco= 70},
+              new Jogos  {Id=4, Nome = "Resident Evil 7", Plataforma ="PC",Fotografia="", Preco= 70},
+              new Jogos  {Id=5, Nome = "Call of Duty Black OPS4", Plataforma ="PS4",Fotografia="", Preco= 70},
+            
 
 
 
@@ -52,28 +52,34 @@ namespace Gaming_Store.Migrations
             context.SaveChanges();
 
 
-            // ############################################################################################
-            // adiciona Plataformas
-            var plataforma = new List<Gaming_Store.Models.Plataforma> {
-                             new Plataforma  {Id=1, Nome = "Playstation4" },
-                             new Plataforma  {Id=2, Nome = "PC" },
-                             new Plataforma  {Id=3, Nome = "XBOX ONE" },
+//            // ############################################################################################
+//            // adiciona Plataformas
+            var plataformas = new List<Plataformas> {
+                             new Plataformas  {Id=1, Nome = "Playstation4" },
+                             new Plataformas  {Id=2, Nome = "PC" },
+                             new Plataformas  {Id=3, Nome = "XBOX ONE" },
 
 };
 
-            plataforma.ForEach(vv => context.Plataforma.AddOrUpdate(v => v.Nome, vv));
+           plataformas.ForEach(vv => context.Plataformas.AddOrUpdate(v => v.Nome, vv));
             context.SaveChanges();
 
-            // ############################################################################################
-            // adiciona Compra
-            var compra = new List<Gaming_Store.Models.Compra> {
-                         new Compra  { Data = new DateTime(), Preco ="" , ClienteFK = "", JogoFK = ""},
+//            // ############################################################################################
+//            // adiciona Compra
+            var compras = new List<Compras> {
+                         new Compras  {Id= 1, Data = new DateTime(), Preco =70 , ClientesFK = 1},
 
 };
 
-            compra.ForEach(cc => context.Compra.Add(cc));
+            compras.ForEach(cc => context.Compras.Add(cc));
             context.SaveChanges();
+
+
+
+
         }
+
+
 
               
 

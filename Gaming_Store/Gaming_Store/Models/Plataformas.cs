@@ -6,14 +6,14 @@ using System.Web;
 
 namespace Gaming_Store.Models
 {
-    public class Plataforma
+    public class Plataformas
     {
 
         // representa os dados da tabela da plataforma
 
         // criar o construtor desta classe
         // e carregar a lista de Jogos na respetiva plataforma
-        public Plataforma()
+        public Plataformas()
         {
             ListaDeJogos = new HashSet<Jogos>();
         }
@@ -26,5 +26,7 @@ namespace Gaming_Store.Models
 
         // especificar que um Jogo pode pertecer a uma ou mais plataformas
         public ICollection<Jogos> ListaDeJogos { get; set; }
+       
+
     }
 }

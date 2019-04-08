@@ -7,16 +7,18 @@ using System.Web;
 
 namespace Gaming_Store.Models
 {
-    public class Cliente
+    public class Clientes
     {
         // vai representar os dados da tabela dos Clientes
 
         // criar o construtor desta classe
         // e carregar a lista dos Jogos
 
-         public Cliente() { 
-        ListaDeJogos = new HashSet<Jogos>();
-            }
+        public Clientes()
+        {
+            ListaDeJogos = new HashSet<Jogos>();
+        }
+
         [Key]
         public int Id { get; set; }
 
@@ -24,13 +26,17 @@ namespace Gaming_Store.Models
         public string Nome { get; set; }
 
         [Required]
-        public string NIF{ get; set; }
+        public string NIF { get; set; }
 
         [Required]
         public string Email { get; set; }
 
         [Required]
         public string Morada { get; set; }
+
+        [Required]
+        public string CodPostal { get; set; }
+
 
         // Um  Cliente  pode comprar 1 ou mais Jogos
         public ICollection<Jogos> ListaDeJogos { get; set; }

@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Gaming_Store.Models
 {
-    public class Compra
+    public class Compras
     {
 
         [Key]
@@ -17,15 +17,14 @@ namespace Gaming_Store.Models
         public DateTime Data { get; set; }
 
         [Required]
-        public string Preco { get; set; }
+        public decimal Preco { get; set; }
 
-        [ForeignKey("Clientes")]
-        public string ClienteFK { get; set; }
-        public virtual Cliente Clientes { get; set; }
+      
+        public int ClientesFK { get; set; }
+        [ForeignKey("ClientesFK")]
+        public virtual Clientes Clientes { get; set; }
 
+       
 
-        [ForeignKey("Jogo")]
-        public string JogoFK { get; set; }
-        public virtual Jogos Jogo { get; set; }
     }
 }
