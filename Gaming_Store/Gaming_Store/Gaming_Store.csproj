@@ -137,14 +137,12 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Jogos\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Jogos\Create.cshtml" />
-    <Content Include="Views\Jogos\Edit.cshtml" />
     <Content Include="Views\Jogos\Delete.cshtml" />
     <Content Include="Views\Jogos\Details.cshtml" />
-    <Content Include="Views\Jogos\List.cshtml" />
-    <Content Include="Views\Jogos\AdminView.cshtml" />
+    <Content Include="Views\Jogos\Edit.cshtml" />
+    <Content Include="Views\Jogos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

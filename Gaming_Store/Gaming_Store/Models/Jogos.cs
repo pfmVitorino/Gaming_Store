@@ -20,8 +20,7 @@ namespace Gaming_Store.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        public string Fotografia { get; set; }
+       
 
         [Required]
         [StringLength(30)]
@@ -30,7 +29,9 @@ namespace Gaming_Store.Models
         [Required]
         public decimal Preco { get; set; }
 
-      
+        [Required]
+        public string Fotografia { get; set; }
+
 
         [Required]
         [StringLength(30)]
