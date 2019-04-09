@@ -37,11 +37,11 @@ namespace Gaming_Store.Migrations
 //            // ############################################################################################
 //            // adiciona Jogos
            var jogos = new List<Jogos> {
-              new Jogos  {Id=1, Nome = "Hitman2", Plataforma ="XBOX ONE",Fotografia="", Preco= 55},
-              new Jogos  {Id=2, Nome = "Red Dead Redemptiom 2", Plataforma ="PS4",Fotografia="", Preco= 70},
-              new Jogos  {Id=3, Nome = "Fifa 19", Plataforma ="PS4",Fotografia="", Preco= 70},
-              new Jogos  {Id=4, Nome = "Resident Evil 7", Plataforma ="PC",Fotografia="", Preco= 70},
-              new Jogos  {Id=5, Nome = "Call of Duty Black OPS4", Plataforma ="PS4",Fotografia="", Preco= 70},
+              new Jogos  {Id=1, Nome = "Hitman2", Plataforma ="XBOX ONE",Fotografia="hit.jpg", Preco= 55},
+              new Jogos  {Id=2, Nome = "Red Dead Redemptiom 2", Plataforma ="PS4",Fotografia="red.png", Preco= 70},
+              new Jogos  {Id=3, Nome = "Fifa 19", Plataforma ="PS4",Fotografia="fifa.jpg", Preco= 70},
+              new Jogos  {Id=4, Nome = "Resident Evil 7", Plataforma ="PC",Fotografia="res.jpg", Preco= 70},
+              new Jogos  {Id=5, Nome = "Call of Duty Black OPS4", Plataforma ="PS4",Fotografia="call.jpg", Preco= 70},
             
 
 

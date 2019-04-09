@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Gaming_Store.Models.Jogos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@* Displayname-> nome do conteudo *@
+
+<table class="table">
+    <tr>
+        <td>
+            @foreach (var item in Model)
+        {
+       
+          
+            <a href="~/Fotografias/" target="_blank">
+                <img src="~/Fotografias/" width="50" height="37" />
+            </a>
+       
+
+        @Html.ActionLink("Ver Jogos", "List", new { id = item.Id })
+
+
+}</td>
+        </tr>
+</table>
