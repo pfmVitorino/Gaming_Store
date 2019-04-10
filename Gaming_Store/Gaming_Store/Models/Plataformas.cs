@@ -22,7 +22,7 @@ namespace Gaming_Store.Models
 
         [Required]
         public string Nome { get; set; }
-
+        
 
         // especificar que um Jogo pode pertecer a uma ou mais plataformas
         public ICollection<Jogos> ListaDeJogos { get; set; }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -38,6 +39,7 @@ namespace Gaming_Store.Controllers
         // GET: Jogos/Create
         public ActionResult Create()
         {
+            ViewBag.Plataformas = db.Plataformas;
             return View();
         }
 
@@ -46,15 +48,74 @@ namespace Gaming_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Fotografia,Nome,Preco,Plataforma")] Jogos jogos)
+        public ActionResult Create([Bind(Include = "Id,Fotografia,Nome,Preco,Plataforma")] Jogos jogos, HttpPostedFileBase uploadFotografia)
         {
-            if (ModelState.IsValid)
+
+            //Escreve a fotografia que foi carregada - O save é efetuado na pasta das imagens do disco rigido
+            //Especificar id do jogo
+            //testar se há registos na tabela dos jogos
+
+            //if (db.Jogos.Count() != 0) { }
+
+            //ou então, usar a instrução testar TRY/CATCH
+
+            int idNew = 0;
+            try
             {
-                db.Jogos.Add(jogos);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                idNew = db.Jogos.Max(a => a.Id) + 1;
+            }
+            catch (Exception)
+            {
+
+                idNew = 1;
+
             }
 
+
+
+
+            //guardar id do novo jogo
+            jogos.Id = idNew;
+            //escolher nome do ficheio
+            string nomeImagem = "Jogo_" + idNew + ".jpg";
+            string path = "";
+            //carregar nome do ficheiro
+            if (uploadFotografia != null)
+            {
+                //formatar tamanho da imagem 
+
+                //Criar caminho para guardar o ficheiro
+                path = Path.Combine(Server.MapPath("~/Fotografias/"), nomeImagem);
+                //guardar nome do ficheiro
+                jogos.Fotografia = nomeImagem;
+            }
+            else
+            {
+                ModelState.AddModelError("", "Tem  de por uma imagem...");
+                ViewBag.Plataformas = db.Plataformas;
+                return View(jogos);
+            }
+
+
+            //ModelState.IsValid confronta os dados fornecidos na view
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    db.Jogos.Add(jogos);
+                    db.SaveChanges();
+                    //escreve os dados de um novo jogo na DB
+                    uploadFotografia.SaveAs(path);
+                    ViewBag.Plataformas = db.Plataformas;
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+
+                    ModelState.AddModelError("", "Houve um erro com a criação do novo Jogo...");
+                }
+            }
+             ViewBag.Plataformas = db.Plataformas;
             return View(jogos);
         }
 
@@ -70,6 +131,7 @@ namespace Gaming_Store.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Plataformas = db.Plataformas;
             return View(jogos);
         }
 
@@ -86,6 +148,7 @@ namespace Gaming_Store.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Plataformas = db.Plataformas;
             return View(jogos);
         }
 
@@ -101,6 +164,7 @@ namespace Gaming_Store.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Plataformas = db.Plataformas;
             return View(jogos);
         }
 
