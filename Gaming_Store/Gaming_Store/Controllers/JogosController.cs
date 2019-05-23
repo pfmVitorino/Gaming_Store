@@ -31,8 +31,9 @@ namespace Gaming_Store.Controllers
             Jogos jogos = db.Jogos.Find(id);
             if (jogos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
+            Session["Metodo"] = "";
             return View(jogos);
         }
 
@@ -48,75 +49,98 @@ namespace Gaming_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Fotografia,Nome,Preco,Plataforma")] Jogos jogos, HttpPostedFileBase uploadFotografia)
+        public ActionResult Create([Bind(Include = "Nome,Preco,Plataforma")] Jogos jogos, HttpPostedFileBase uploadFotografia)
         {
 
             //Escreve a fotografia que foi carregada - O save é efetuado na pasta das imagens do disco rigido
             //Especificar id do jogo
             //testar se há registos na tabela dos jogos
 
-            //if (db.Jogos.Count() != 0) { }
+            // vars aux
 
-            //ou então, usar a instrução testar TRY/CATCH
+            string caminho = "";
+            bool ficheiroValido = false;
 
-            int idNew = 0;
-            try
+
+
+
+            /// 1º será que foi enviado um ficheiro?
+            if (uploadFotografia == null)
+            // atribuir uma foto por defeito ao agente criado
             {
-                idNew = db.Jogos.Max(a => a.Id) + 1;
-            }
-            catch (Exception)
-            {
-
-                idNew = 1;
-
-            }
-
-
-
-
-            //guardar id do novo jogo
-            jogos.Id = idNew;
-            //escolher nome do ficheio
-            string nomeImagem = "Jogo_" + idNew + ".jpg";
-            string path = "";
-            //carregar nome do ficheiro
-            if (uploadFotografia != null)
-            {
-                //formatar tamanho da imagem 
-
-                //Criar caminho para guardar o ficheiro
-                path = Path.Combine(Server.MapPath("~/Fotografias/"), nomeImagem);
-                //guardar nome do ficheiro
-                jogos.Fotografia = nomeImagem;
+                jogos.Fotografia = "no-user.jpg";
             }
             else
             {
-                ModelState.AddModelError("", "Tem  de por uma imagem...");
-                ViewBag.Plataformas = db.Plataformas;
-                return View(jogos);
+
+
+                /// 2º será que o ficheiro, se foi fornecido, é do tipo correto?
+
+                string mimeType = uploadFotografia.ContentType;
+                if (mimeType == "image/jpeg" || mimeType == "image/png")
+                {
+                    // o ficheiro é do tipo correto
+
+                    /// 3º qual o nome que devo dar ao ficheiro?
+                    Guid g;
+                    g = Guid.NewGuid(); // obtem os dados para o nome do ficheiro
+                    // e qual a extensão do ficheiro?
+                    string extensao = Path.GetExtension(uploadFotografia.FileName).ToLower();
+                    // montar novo nome
+                    string nomeFicheiro = g.ToString() + extensao;
+                    // onde guardar o ficheiro?
+                    caminho = Path.Combine(Server.MapPath("~/fotografias/"), nomeFicheiro);
+                    /// 4º como o associar ao novo Agente?
+                    jogos.Fotografia = nomeFicheiro;
+
+                    // marcar o ficheiro como válido
+                    ficheiroValido = true;
+
+
+
+
+                }
+                else
+                {
+                    // o ficheiro fornecido nao é válido 
+                    // atributo por defeito ao agene
+                    jogos.Fotografia = "no-user.jpg";
+                }
             }
 
 
-            //ModelState.IsValid confronta os dados fornecidos na view
+
+            // confronta os dados que vem da view com a forma que os dados devem  ter .
+            // ie, valida os dados com o modelo
             if (ModelState.IsValid)
             {
                 try
                 {
                     db.Jogos.Add(jogos);
                     db.SaveChanges();
-                    //escreve os dados de um novo jogo na DB
-                    uploadFotografia.SaveAs(path);
-                    ViewBag.Plataformas = db.Plataformas;
+
+
+                    /// 5º como o guardar no disco rígido?
+                    if (ficheiroValido)
+                    {
+                        uploadFotografia.SaveAs(caminho);
+                    }
                     return RedirectToAction("Index");
+
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
 
-                    ModelState.AddModelError("", "Houve um erro com a criação do novo Jogo...");
+
                 }
+                ViewBag.Plataformas = db.Plataformas;
+
             }
-             ViewBag.Plataformas = db.Plataformas;
+
             return View(jogos);
+            
+               
+            
         }
 
         // GET: Jogos/Edit/5
@@ -140,7 +164,7 @@ namespace Gaming_Store.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Preço,Fotografia,Plataforma")] Jogos jogos)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Preco,Fotografia,Plataforma")] Jogos jogos)
         {
             if (ModelState.IsValid)
             {
@@ -157,13 +181,15 @@ namespace Gaming_Store.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             Jogos jogos = db.Jogos.Find(id);
             if (jogos == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index");
             }
+            Session["Id"] = jogos.Id;
+            Session["Metodo"] = "Jogos/Delete";
             ViewBag.Plataformas = db.Plataformas;
             return View(jogos);
         }

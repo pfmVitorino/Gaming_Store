@@ -16,10 +16,9 @@ namespace Gaming_Store.Models
         [Column(TypeName = "date")] //só regista 'datas', não 'horas'.
         public DateTime Data { get; set; }
 
-        [Required]
+       [Required]
         public decimal Preco { get; set; }
 
-      
         public int ClientesFK { get; set; }
         [ForeignKey("ClientesFK")]
         public virtual Clientes Clientes { get; set; }

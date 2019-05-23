@@ -13,14 +13,14 @@ namespace Gaming_Store.Models
         public Jogos()
         {
             // inicialização da lista de Vendas de um jogo
-            Compras = new HashSet<Compras>();
-       
+            Compras = new HashSet<Detalhes_Compra>();
+
         }
 
         [Key]
         public int Id { get; set; }
 
-       
+
 
         [Required]
         [StringLength(30)]
@@ -29,7 +29,7 @@ namespace Gaming_Store.Models
         [Required]
         public decimal Preco { get; set; }
 
-        [Required]
+       
         public string Fotografia { get; set; }
 
 
@@ -40,7 +40,7 @@ namespace Gaming_Store.Models
        
 
         // um Jogo pode ser várias vezes comprado
-        public virtual ICollection<Compras> Compras { get; set; }
+        public virtual ICollection<Detalhes_Compra> Compras { get; set; }
       
 
     }

@@ -99,11 +99,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Fotografias\call.jpg" />
-    <Content Include="Fotografias\fifa.jpg" />
-    <Content Include="Fotografias\hit.jpg" />
-    <Content Include="Fotografias\red.png" />
-    <Content Include="Fotografias\res.jpg" />
+    <Content Include="fotografias\call.jpg" />
+    <Content Include="fotografias\fifa.jpg" />
+    <Content Include="fotografias\hit.jpg" />
+    <Content Include="fotografias\no-user.jpg" />
+    <Content Include="fotografias\red.png" />
+    <Content Include="fotografias\res.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -115,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\JogosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -143,6 +145,11 @@
     <Content Include="Views\Jogos\Details.cshtml" />
     <Content Include="Views\Jogos\Edit.cshtml" />
     <Content Include="Views\Jogos\Index.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

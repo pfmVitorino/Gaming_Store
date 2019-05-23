@@ -15,7 +15,7 @@ namespace Gaming_Store.Models
         // e carregar a lista de Jogos na respetiva plataforma
         public Plataformas()
         {
-            ListaDeJogos = new HashSet<Jogos>();
+            ListaDeJogos = new HashSet<Detalhes_Compra>();
         }
         [Key]
         public int Id { get; set; }
@@ -25,7 +25,7 @@ namespace Gaming_Store.Models
         
 
         // especificar que um Jogo pode pertecer a uma ou mais plataformas
-        public ICollection<Jogos> ListaDeJogos { get; set; }
+        public ICollection<Detalhes_Compra> ListaDeJogos { get; set; }
        
 
     }

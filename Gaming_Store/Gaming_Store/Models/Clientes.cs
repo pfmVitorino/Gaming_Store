@@ -16,7 +16,7 @@ namespace Gaming_Store.Models
 
         public Clientes()
         {
-            ListaDeJogos = new HashSet<Jogos>();
+            ListaDeCompras = new HashSet<Compras>();
         }
 
         [Key]
@@ -39,7 +39,7 @@ namespace Gaming_Store.Models
 
 
         // Um  Cliente  pode comprar 1 ou mais Jogos
-        public ICollection<Jogos> ListaDeJogos { get; set; }
+        public ICollection<Compras> ListaDeCompras { get; set; }
 
 
     }
